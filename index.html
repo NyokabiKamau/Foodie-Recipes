@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script defer src="js/index.js"></script>
+    </head>
+
+    <body style="background-image: url(https://img.freepik.com/free-vector/christmas-background-with-bokeh-snowflakes_1393-207.jpg?w=2000&t=st=1671050055~exp=1671050655~hmac=d6ab97bf5c2f7b8fc9a94563d0093fa1f71813a32404b30a8fb25181b3f23154);">
+        <div class="card-container">
+            <div class="card u-clearfix">
+              <div class="card-body">
+                <span class="card-number card-circle subtle">01</span>
+                <span class="card-author subtle">John Smith</span>
+                <h2 class="card-title">New Brunch Recipe</h2>
+                <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span>
+                <div class="card-read">Read</div>
+                <span class="card-tag card-circle subtle">C</span>
+              </div>
+              <img src="https://s15.postimg.cc/temvv7u4r/recipe.jpg" alt="" class="card-media" />
+            </div>
+            <div class="card-shadow"></div>
+          </div>
+    <main id="main-holder">
+        <h1 id="login-header">Login</h1>
+        
+        <div id="login-error-msg-holder">
+        <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+        </div>
+        
+        <form id="login-form">
+        <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+        <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+        <input type="submit" value="Login" id="login-form-submit">
+        </form>
+    
+    </main>
+    </body>
+
+</html>
