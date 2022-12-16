@@ -13,20 +13,15 @@
     </head>
 
     <body>
-        <!-- <div class="header">
-            <img src="https://img.freepik.com/free-photo/vegetables-set-left-black-slate_1220-685.jpg?w=1380&t=st=1671049598~exp=1671050198~hmac=49699dd6845b4bf8aa39be2008b935e32036b330e7455f55150ea07d7f8d27ea" id="image">
-        </div> -->
+        <div class="header">
+            <img src="https://img.freepik.com/free-vector/christmas-background-with-bokeh-snowflakes_1393-207.jpg?w=1380&t=st=1671224411~exp=1671225011~hmac=da6e5f5ea62174d3f84c7249e964c786ae52a17e24b02967606680ab9ce58fb1">
+            <h1 style="color:bisque">FOODIE RECIPES</h1>
+        </div>
         <nav class="navbar navbar-expand-lg nabar-light" id="mainNav">
-            <!-- <nav class="navbar bg-light">
-                <div class="container">
-                    <a class="navbar-brand" href="#">
-                        <img src="https://img.freepik.com/free-photo/nice-christmas-background-white-background-with-copy-space_24972-1722.jpg?w=1480&t=st=1671185049~exp=1671185649~hmac=857f427b1f112783b9e0f93ac47ff29ac8b3f94238de38137edd2277e2e9c456" alt="Bootstrap" width="30" height="24">
-                    </a>
-                </div>
-            </nav> -->
-            
+
             <div class="container-fluid">
                 <a class="navbar-brand" href=#>Foodie Recipes</a>
+                
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" id="menuBtn">Menu
                     <i class="fa fa-bars"></i>
                     <span class="navbar-toggler-icon"></span>
@@ -34,13 +29,16 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" active aria-current="page" href="#">Home</a>
+                            <a class="text-dark nav-link" active aria-current="page" id="home-link">Home</a>
                         </li>
                         <li class="navbar-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="text-dark nav-link" id="about-link" href="#section1">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-dark nav-link" id="ingredient-link">Ingredients</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-target="dropdown" aria-expanded="false">Dropdown Menu</a>
+                            <a class="text-dark nav-link dropdown-toggle" id="search-button" role="button" data-bs-target="dropdown" aria-expanded="false" id="dropdown -link">Dropdown Menu</a>
                             <ul class="dropdown-menu me-auto">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Action action</a></li>
@@ -49,7 +47,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" id="search-form" role="search">
+                    <form class="d-flex ms-1" id="search-form" role="search">
                         <input class="form-control ms-5" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-sucess ms-1" type="submit" id="search-btn">Search</button>
                     </form>
@@ -58,18 +56,34 @@
         </nav>
 
         <div class="card-container">
-            <div class="card u-clearflex">
-                <div class="card-body">
-                    <span class="card-number card-cirle subtle">01</span>
-                    <span class="card-aurthor subtle">John Smith</span>
-                    <h2 class="=card-title">New Brunch Recipe</h2>
-                    <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all</span>
+            <div class="card u-clearfix">
+                <div class="card-body" id="meal-cardBody">
+                    <span class="card-number card-circle subtle">01</span>
+                    <span class="card-author subtle">John Smith</span>
+                    <h2 class="card-title">New Brunch Recipe</h2>
+                    <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span>
                     <div class="card-read">Read</div>
                     <span class="card-tag card-circle subtle">C</span>
                 </div>
-                <img src="https://s15.postimg.cc/temvv7u4r/recipe.jpg" alt="" class="card-media"/>
+                <img src="https://s15.postimg.cc/temvv7u4r/recipe.jpg" alt="" class="card-media" />
             </div>
-            <div class="class-shadow"></div>
+            <div class="card u-clearfix">
+                <div class="card-body" id="meal-cardBody">
+                    <span class="card-number card-circle subtle">01</span>
+                    <span class="card-author subtle">John Smith</span>
+                    <h2 class="card-title">New Brunch Recipe</h2>
+                    <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span>
+                    <div class="card-read">Read</div>
+                    <span class="card-tag card-circle subtle">C</span>
+                </div>
+                <img src="https://s15.postimg.cc/temvv7u4r/recipe.jpg" alt="" class="card-media" />
+            </div>
+            <div class="card-shadow"></div>
+            <div class="row mt-3 mb-3" id="meal-ingredients" hidden></div>
+            <div class="row mt-3 mb-3" id="search-result" hidden>SEARCH RESULTS</div>
+        </div>
+        <div id="section1">
+            <p class="row" id="">This is the about section</p>
         </div>
     </body>
 
