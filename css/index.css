@@ -1,3 +1,45 @@
+body{
+	margin: 0;
+	background-color: #111e27;
+}
+
+.header{
+	margin: 0;
+	width: 200px;
+	height: 300px;
+	object-fit: fill;
+}
+
 #mainNav{
 	background-color:rgb(246, 165, 136);
+	width: auto;
+	margin:auto;
+	overflow:auto;
 }
+ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+li{
+	float: left;
+}
+#menuBtn{
+	color: black;
+}
+li{
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+.card-container {
+margin: 30px auto 0;
+position:relative;
+width: 692px;
+}
+.card {
+	background-color: #fff;
+	padding: 30px;
+	position: relative;
+	box-shadow: 0 0 5px rgba(75, 75, 75, .07);
+	z-index: 1;
+  }
