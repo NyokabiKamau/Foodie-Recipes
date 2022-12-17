@@ -1,4 +1,4 @@
-const INGREDIENT = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast'
+const INGREDIENT = 'https://www.themealdb.com/api/json/v1/1/filter.php?i='
 
 const MEAL = 'https://www.themealdb.com/api/json/v1/1/random.php'
 
@@ -27,7 +27,6 @@ ingredientsLink.addEventListener('click', () => {
     countryLink.style.display = "block"
     ingredientCard.removeAttribute('hidden')
     ingredientCard.style.display = "block"
-    alert('event has been clicked')
 })
 
 // click event for dropdown menu
@@ -109,7 +108,10 @@ function creatingMeal (image, id, category, title, linkInstruction, link) {
     mealLink.href = link
     mealLink.target = '_blank'
 
-    // const recommendIcon = document.
+    // const countRecommend = document.querySelector('.likes')
+    // countRecommend.innerText = `${data.likes} recommend`
+
+    // const likeRecommend = document.querySelector('material-icons')
 
     // append body elements to the card div
     cardDiv.appendChild(mealId)
@@ -118,6 +120,8 @@ function creatingMeal (image, id, category, title, linkInstruction, link) {
     cardDiv.appendChild(description)
     cardDiv.appendChild(mealInstructions)
     cardDiv.appendChild(mealLink)
+    // cardDiv.appendChild(likeRecommend)
+
 
     // append image element to image div
     imageDiv.appendChild(mealImage)
@@ -130,6 +134,46 @@ function creatingMeal (image, id, category, title, linkInstruction, link) {
     rootDiv.appendChild(rowDiv)
 
     return rootDiv
+}
+
+// creating ingredients element
+function creatingIngredients (image, id, title) {
+    const rootDiv = document.createElement('div')
+    rootDiv.classList.add('card', 'u-clearfix', 'col-12', 'px-0', 'mb-3')
+
+    const rowDiv = document.createElement('div')
+    rowDiv.classList.add('row')
+
+    const cardDiv = document.createElement('div')
+    cardDiv.classList.add('card-body', 'col-6')
+
+    const imageDiv = document.createElement('div')
+    imageDiv.classList.add( 'col-6')
+
+    const mealImage = document.createElement('img')
+    mealImage.classList.add('card-media','h-100' )
+    mealImage.src = image
+    mealImage.objectFit = 'cover'
+    mealImage.float = 'right'
+
+    const mealId = document.createElement('span')
+    mealId.classList.add('card-number', 'card-circle', 'subtle')
+    mealId.innerText = id
+
+    const mealTitle = document.createElement('h2')
+    mealTitle.classList.add('card-title')
+    mealTitle.innerText = title
+
+    rootDiv.appendChild(rowDiv)
+    rootDiv.appendChild(cardDiv)
+
+    imageDiv.appendChild(mealImage)
+
+    cardDiv.appendChild(mealId)
+    cardDiv.appendChild(mealTitle)
+
+    return rootDiv
+
 }
 
 // function that loads meals
@@ -153,9 +197,22 @@ function loadMenu () {
         })
 }
 
+function loadIngredients () {
+    fetch(INGREDIENT)
+        .then((response) => response.json())
+        .then(data => {
+            const mealData = data.meals
+            const ingrElement = mealData.map(
+                cat => creatingIngredients(cat.strMealThumb, cat.idMeal, cat.strMeal)
+            )
+            ingredientCard.append(...ingrElement)
+        })
+}
+
 document.addEventListener('DOMContentLoaded', () =>
 {
     loadMenu()
     loadMenu()
     loadMenu()
+    loadIngredients()
 })
