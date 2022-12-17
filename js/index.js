@@ -60,3 +60,60 @@ searchForm.addEventListener('submit', (event) => {
     searchRowCard.removeAttribute('hidden')
     alert('event has been clicked')
 })
+
+// creating the meal element
+function creatingMeal (image, id, title, instructions, link ) {
+    const rootDiv = document.createElement('div')
+    rootDiv.classList.add('card', 'u-clearfix', 'col-12', 'px-0', 'mb-3')
+
+    const rowDiv = document.createElement('div')
+    rowDiv.classList.add('row')
+
+    const cardDiv = document.createElement('div')
+    cardDiv.classList.add('col-6', 'card-body')
+
+    const imageDiv = document.createElement('div')
+    imageDiv.classList.add( 'col-6')
+
+    const mealImage = document.createElement('img')
+    mealImage.classList.add('card-media','h-100' )
+    mealImage.src = image
+    mealImage.objectFit = 'cover'
+    mealImage.float = 'right'
+
+    const mealId = document.createElement('span')
+    mealId.classList.add('card-number', 'card-circl', 'subtle')
+    mealId.innerText = id
+
+    const mealTitle = document.createElement('h2')
+    mealTitle.classList.add('card-title')
+    mealTitle.innerText = title
+
+    const mealInstructions = document.createElement('span')
+    mealInstructions.classList.add('card-description', 'subtle')
+    mealInstructions.innerText = instructions
+
+    const mealLink = document.createElement('a')
+    mealLink.classList.add('mt-1', 'mb-2', 'me-3', 'ms-3', 'btn', 'btn-warning')
+    mealLink.innerText = 'Video ...'
+    mealLink.href = link
+    mealLink.target = '_blank'
+
+    // append body elements to the card div
+    cardDiv.appendChild(mealId)
+    cardDiv.appendChild(mealTitle)
+    cardDiv.appendChild(mealInstructions)
+    cardDiv.appendChild(mealLink)
+
+    // append image element to image div
+    imageDiv.appendChild(mealImage)
+
+    // append divs to row
+    rowDiv.appendChild(cardDiv)
+    rowDiv.appendChild(imageDiv)
+
+    // append the row to the root
+    rootDiv.appendChild(rowDiv)
+
+    return rootDiv
+}
