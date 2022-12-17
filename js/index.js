@@ -117,3 +117,26 @@ function creatingMeal (image, id, title, instructions, link ) {
 
     return rootDiv
 }
+
+// function that loads meals
+function loadMenu () {
+    fetch(MEAL)
+        .then((response) => response.json())
+        .then((data) => {
+            const mealData = data.meals[0]
+            const image = mealData.strMealThumb
+            const id = mealData.idMeal
+            const title = mealData.strMeal
+            const instructions = mealData.strInstructions
+            const link = mealData.strYoutube
+
+            const mealElement = creatingMeal(image, id, title, instructions, link)
+
+            mealCard.appendChild(mealElement)
+        })
+}
+
+document.addEventListener('DOMContentLoaded', () =>
+{
+    loadMenu()
+})
