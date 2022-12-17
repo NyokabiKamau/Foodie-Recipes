@@ -24,7 +24,7 @@ const searchInput = document.getElementById('search-input')
 ingredientsLink.addEventListener('click', () => {
     mealCard.style.display = "none"
     searchRowCard.style.display = "none"
-    countryLink.style.display = "none"
+    countryLink.style.display = "block"
     ingredientCard.removeAttribute('hidden')
     ingredientCard.style.display = "block"
     alert('event has been clicked')
@@ -41,10 +41,22 @@ countryLink.addEventListener('click', event => {
     console.log(event.target.value)
 })
 
+// click event for home link
 homeLink.addEventListener('click', () => {
     searchRowCard.style.display = "none"
     ingredientCard.style.display = "none"
     countryLink.style.display = "block"
     mealCard.style.display = "block"
+    alert('event has been clicked')
+})
+
+// submit event for search form
+searchForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+    ingredientCard.style.display = "none"
+    countryLink.style.display = "block"
+    mealCard.style.display = "none"
+    searchRowCard.style.display = "block"
+    searchRowCard.removeAttribute('hidden')
     alert('event has been clicked')
 })
