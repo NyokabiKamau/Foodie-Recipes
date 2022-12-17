@@ -40,3 +40,11 @@ countryLink.addEventListener('click', event => {
     
     console.log(event.target.value)
 })
+
+homeLink.addEventListener('click', () => {
+    searchRowCard.style.display = "none"
+    ingredientCard.style.display = "none"
+    countryLink.style.display = "block"
+    mealCard.style.display = "block"
+    alert('event has been clicked')
+})
