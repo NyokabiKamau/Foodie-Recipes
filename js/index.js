@@ -1,6 +1,8 @@
 const INGREDIENT = 'https://www.themealdb.com/api/json/v1/1/filter.php?i='
 
-const MEAL = 'https://www.themealdb.com/api/json/v1/1/random.php'
+const MEAL = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
+
+const CATEGORY = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list'
 
 const SEARCH = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
@@ -212,7 +214,7 @@ function loadIngredients () {
 document.addEventListener('DOMContentLoaded', () =>
 {
     loadMenu()
-    loadMenu()
-    loadMenu()
+    // loadMenu()
+    // loadMenu()
     loadIngredients()
 })
