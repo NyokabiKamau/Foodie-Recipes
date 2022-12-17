@@ -17,3 +17,14 @@ const dropdownLink = document.getElementById('dropdown-link"')
 // get search form data elements 
 const searchForm = document.getElementById('search-form')
 const searchInput = document.getElementById('search-input')
+
+
+// click event for ingredient
+ingredientsLink.addEventListener('click', () => {
+    mealCard.style.display = "none"
+    searchRowCard.style.display = "none"
+    ingredientCard.removeAttribute('hidden')
+    ingredientCard.style.display = "block"
+    alert('event has been clicked')
+})
+
