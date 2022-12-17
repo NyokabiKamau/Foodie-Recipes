@@ -26,7 +26,7 @@ const searchInput = document.getElementById('search-input')
 ingredientsLink.addEventListener('click', () => {
     mealCard.style.display = "none"
     searchRowCard.style.display = "none"
-    countryLink.style.display = "block"
+    countryLink.style.display = "none"
     ingredientCard.removeAttribute('hidden')
     ingredientCard.style.display = "block"
 })
@@ -48,18 +48,20 @@ homeLink.addEventListener('click', () => {
     ingredientCard.style.display = "none"
     countryLink.style.display = "block"
     mealCard.style.display = "block"
-    alert('event has been clicked')
 })
 
 // submit event for search form
 searchForm.addEventListener('submit', (event) => {
     event.preventDefault()
+
+    searchMeal(searchInput.value)
+
     ingredientCard.style.display = "none"
     countryLink.style.display = "block"
     mealCard.style.display = "none"
     searchRowCard.style.display = "block"
     searchRowCard.removeAttribute('hidden')
-    alert('event has been clicked')
+    // alert('event has been clicked')
 })
 
 // creating the meal element
@@ -138,6 +140,27 @@ function creatingMeal (image, id, category, title, linkInstruction, link) {
     return rootDiv
 }
 
+// function that loads meals
+function loadMenu () {
+    fetch(MEAL)
+        .then((response) => response.json())
+        .then((data) => {
+            const meal = data.meals
+            meal.forEach(mealData => {
+            const image = mealData.strMealThumb
+            const id = mealData.idMeal
+            const category = mealData.strCategory
+            const title = mealData.strMeal
+            const instructions = mealData.strSource
+            const link = mealData.strYoutube
+
+            const mealElement = creatingMeal(image, id, category, title, instructions, link)
+
+            mealCard.appendChild(mealElement)
+            })
+        })
+}
+
 // creating ingredients element
 function creatingIngredients (image, id, title) {
     const rootDiv = document.createElement('div')
@@ -153,7 +176,7 @@ function creatingIngredients (image, id, title) {
     imageDiv.classList.add( 'col-6')
 
     const mealImage = document.createElement('img')
-    mealImage.classList.add('card-media','h-100' )
+    mealImage.classList.add('card-media','h-100')
     mealImage.src = image
     mealImage.objectFit = 'cover'
     mealImage.float = 'right'
@@ -178,27 +201,6 @@ function creatingIngredients (image, id, title) {
 
 }
 
-// function that loads meals
-function loadMenu () {
-    fetch(MEAL)
-        .then((response) => response.json())
-        .then((data) => {
-            const meal = data.meals
-            meal.forEach(mealData => {
-            const image = mealData.strMealThumb
-            const id = mealData.idMeal
-            const category = mealData.strCategory
-            const title = mealData.strMeal
-            const instructions = mealData.strSource
-            const link = mealData.strYoutube
-
-            const mealElement = creatingMeal(image, id, category, title, instructions, link)
-
-            mealCard.appendChild(mealElement)
-            })
-        })
-}
-
 function loadIngredients () {
     fetch(INGREDIENT)
         .then((response) => response.json())
@@ -208,6 +210,93 @@ function loadIngredients () {
                 cat => creatingIngredients(cat.strMealThumb, cat.idMeal, cat.strMeal)
             )
             ingredientCard.append(...ingrElement)
+        })
+}
+
+
+// creating search results
+function creatingSearch(image, id, category, title, instructions, link) {
+    const rootDiv = document.createElement('div')
+    rootDiv.classList.add('card', 'u-clearfix', 'col-12', 'px-0', 'mb-3')
+
+    const rowDiv = document.createElement('div')
+    rowDiv.classList.add('row')
+
+    const cardDiv = document.createElement('div')
+    cardDiv.classList.add('card-body', 'col-6')
+
+    const imageDiv = document.createElement('div')
+    imageDiv.classList.add( 'col-6')
+
+    const mealImage = document.createElement('img')
+    mealImage.classList.add('card-media','h-100')
+    mealImage.src = image
+    mealImage.objectFit = 'cover'
+    mealImage.float = 'right'
+
+    const mealId = document.createElement('span')
+    mealId.classList.add('card-number', 'card-circle', 'subtle')
+    mealId.innerText = id
+
+    const mealCategory = document.createElement('span')
+    mealCategory.classList.add('card-category')
+    mealCategory.innerText = category
+
+    const mealTitle = document.createElement('h2')
+    mealTitle.classList.add('card-title')
+    mealTitle.innerText = title
+
+    const mealInstructions = document.createElement('p')
+    mealInstructions.classList.add('card-text')
+    mealInstructions.innerText = instructions
+
+    const mealLink = document.createElement('a')
+    mealLink.classList.add('mt-1', 'mb-2', 'me-3', 'ms-5', 'btn', 'btn-warning')
+    mealLink.innerText = 'Video ...'
+    mealLink.href = link
+    mealLink.target = '_blank'
+
+    // cardDiv.appendChild(mealImage)
+
+    cardDiv.appendChild(mealId)
+    cardDiv.appendChild(mealTitle)
+    cardDiv.appendChild(mealLink)
+    cardDiv.appendChild(mealCategory)
+
+
+    // append image element to image div
+    imageDiv.appendChild(mealImage)
+
+    // append divs to row
+    rowDiv.appendChild(cardDiv)
+    rowDiv.appendChild(imageDiv)
+
+    // append the row to the root
+    rootDiv.appendChild(rowDiv)
+
+    return rootDiv
+
+}
+
+// search data
+const searchMeal = (meal) => {
+    fetch(`${SEARCH}${meal}`)
+        .then((response) => response.json())
+        .then((data) => {
+            const mealList = data.meals
+            const searchResults = mealList.map(
+                mealData => {
+                    const title = mealData.strMeal
+                    const id = mealData.idMeal
+                    const image = mealData.strMealThumb
+                    const category = mealData.strCategory
+                    const instructions = mealData.strInstructions
+                    const link = mealData.strYoutube
+                    return creatingSearch(image, id, category, title, instructions, link)
+                }
+            )
+            // replace all children
+            searchRowCard.replaceChildren(...searchResults)
         })
 }
 
