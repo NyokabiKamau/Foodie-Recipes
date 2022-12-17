@@ -89,9 +89,15 @@ function creatingMeal (image, id, title, instructions, link ) {
     mealTitle.classList.add('card-title')
     mealTitle.innerText = title
 
-    const mealInstructions = document.createElement('span')
-    mealInstructions.classList.add('card-description', 'subtle')
-    mealInstructions.innerText = instructions
+    const mealInstructions = document.createElement('a')
+    mealInstructions.classList.add('mt-1', 'mb-2', 'me-3', 'ms-3', 'btn', 'btn-warning')
+    mealInstructions.innerText = 'Instructions'
+    mealInstructions.href = link
+    mealInstructions.target = '_blank'
+
+    const description = document.createElement('p')
+    description.classList.add('card-description')
+    description.innerText = 'Click the links to view written instruction or watch the video tutorial'
 
     const mealLink = document.createElement('a')
     mealLink.classList.add('mt-1', 'mb-2', 'me-3', 'ms-3', 'btn', 'btn-warning')
@@ -102,6 +108,7 @@ function creatingMeal (image, id, title, instructions, link ) {
     // append body elements to the card div
     cardDiv.appendChild(mealId)
     cardDiv.appendChild(mealTitle)
+    cardDiv.appendChild(description)
     cardDiv.appendChild(mealInstructions)
     cardDiv.appendChild(mealLink)
 
@@ -123,16 +130,18 @@ function loadMenu () {
     fetch(MEAL)
         .then((response) => response.json())
         .then((data) => {
-            const mealData = data.meals[0]
+            const meal = data.meals
+            meal.forEach(mealData => {
             const image = mealData.strMealThumb
             const id = mealData.idMeal
             const title = mealData.strMeal
-            const instructions = mealData.strInstructions
+            const instructions = mealData.strSource
             const link = mealData.strYoutube
 
             const mealElement = creatingMeal(image, id, title, instructions, link)
 
             mealCard.appendChild(mealElement)
+            })
         })
 }
 
