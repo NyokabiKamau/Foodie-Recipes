@@ -62,7 +62,7 @@ searchForm.addEventListener('submit', (event) => {
 })
 
 // creating the meal element
-function creatingMeal (image, id, title, instructions, link ) {
+function creatingMeal (image, id, category, title, linkInstruction, link) {
     const rootDiv = document.createElement('div')
     rootDiv.classList.add('card', 'u-clearfix', 'col-12', 'px-0', 'mb-3')
 
@@ -82,17 +82,21 @@ function creatingMeal (image, id, title, instructions, link ) {
     mealImage.float = 'right'
 
     const mealId = document.createElement('span')
-    mealId.classList.add('card-number', 'card-circl', 'subtle')
+    mealId.classList.add('card-number', 'card-circle', 'subtle')
     mealId.innerText = id
 
     const mealTitle = document.createElement('h2')
     mealTitle.classList.add('card-title')
     mealTitle.innerText = title
 
+    const mealCategory = document.createElement('span')
+    mealCategory.classList.add('card-category')
+    mealCategory.innerText = category
+
     const mealInstructions = document.createElement('a')
-    mealInstructions.classList.add('mt-1', 'mb-2', 'me-3', 'ms-3', 'btn', 'btn-warning')
+    mealInstructions.classList.add('mt-1', 'mb-2', 'me-1', 'ms-5', 'btn', 'btn-warning')
     mealInstructions.innerText = 'Instructions'
-    mealInstructions.href = link
+    mealInstructions.href = linkInstruction
     mealInstructions.target = '_blank'
 
     const description = document.createElement('p')
@@ -100,13 +104,16 @@ function creatingMeal (image, id, title, instructions, link ) {
     description.innerText = 'Click the links to view written instruction or watch the video tutorial'
 
     const mealLink = document.createElement('a')
-    mealLink.classList.add('mt-1', 'mb-2', 'me-3', 'ms-3', 'btn', 'btn-warning')
+    mealLink.classList.add('mt-1', 'mb-2', 'me-3', 'ms-5', 'btn', 'btn-warning')
     mealLink.innerText = 'Video ...'
     mealLink.href = link
     mealLink.target = '_blank'
 
+    // const recommendIcon = document.
+
     // append body elements to the card div
     cardDiv.appendChild(mealId)
+    cardDiv.appendChild(mealCategory)
     cardDiv.appendChild(mealTitle)
     cardDiv.appendChild(description)
     cardDiv.appendChild(mealInstructions)
@@ -134,11 +141,12 @@ function loadMenu () {
             meal.forEach(mealData => {
             const image = mealData.strMealThumb
             const id = mealData.idMeal
+            const category = mealData.strCategory
             const title = mealData.strMeal
             const instructions = mealData.strSource
             const link = mealData.strYoutube
 
-            const mealElement = creatingMeal(image, id, title, instructions, link)
+            const mealElement = creatingMeal(image, id, category, title, instructions, link)
 
             mealCard.appendChild(mealElement)
             })
@@ -147,5 +155,7 @@ function loadMenu () {
 
 document.addEventListener('DOMContentLoaded', () =>
 {
+    loadMenu()
+    loadMenu()
     loadMenu()
 })
