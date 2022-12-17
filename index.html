@@ -31,24 +31,30 @@
                         <li class="nav-item">
                             <a class="text-dark nav-link" active aria-current="page" id="home-link">Home</a>
                         </li>
-                        <li class="navbar-item">
+                        <li class="nav-item">
                             <a class="text-dark nav-link" id="about-link" href="#section1">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="text-dark nav-link" id="ingredient-link">Ingredients</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="text-dark nav-link dropdown-toggle" id="search-button" role="button" data-bs-target="dropdown" aria-expanded="false" id="dropdown -link">Dropdown Menu</a>
-                            <ul class="dropdown-menu me-auto">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Action action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">something else</a></li>
-                            </ul>
+                        <li class="nav-item mt-auto">
+                            <!-- <a class="text-dark nav-link dropdown-toggle" id="dropdown" role="button" data-bs-target="dropdown" aria-expanded="false" id="dropdown -link">Dropdown Menu</a> -->
+                            <select name="countries" id="country-list">
+                                <option><a></a></option>
+                                <option><a></a></option>
+                                <option><a></a></option>
+                            </select>
                         </li>
+                        <!-- <li class="nav-item mt-auto">
+                            <select name="cities" id="city-list"> 
+                                <option value="New York">New York</option> 
+                                <option value="Boston">Boston</option> 
+                                <option value="Montreal">Montreal</option> 
+                            </select> 
+                        </li> -->
                     </ul>
                     <form class="d-flex ms-1" id="search-form" role="search">
-                        <input class="form-control ms-5" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control ms-5" type="search" placeholder="Search" aria-label="Search" id="search-input">
                         <button class="btn btn-outline-sucess ms-1" type="submit" id="search-btn">Search</button>
                     </form>
                 </div>         
@@ -67,19 +73,9 @@
                 </div>
                 <img src="https://s15.postimg.cc/temvv7u4r/recipe.jpg" alt="" class="card-media" />
             </div>
-            <div class="card u-clearfix">
-                <div class="card-body" id="meal-cardBody">
-                    <span class="card-number card-circle subtle">01</span>
-                    <span class="card-author subtle">John Smith</span>
-                    <h2 class="card-title">New Brunch Recipe</h2>
-                    <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span>
-                    <div class="card-read">Read</div>
-                    <span class="card-tag card-circle subtle">C</span>
-                </div>
-                <img src="https://s15.postimg.cc/temvv7u4r/recipe.jpg" alt="" class="card-media" />
-            </div>
             <div class="card-shadow"></div>
             <div class="row mt-3 mb-3" id="meal-ingredients" hidden></div>
+            <div class="row mt-3 mb-3" id="countries" hidden></div>
             <div class="row mt-3 mb-3" id="search-result" hidden>SEARCH RESULTS</div>
         </div>
         <div id="section1">
