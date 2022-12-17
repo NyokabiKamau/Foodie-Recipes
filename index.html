@@ -10,12 +10,13 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         <script type="text/javascript" defer src="js/index.js"></script>
         <script type="text/javascript" defer src="js/bootstrap.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     </head>
 
     <body>
         <div class="header">
-            <img src="https://img.freepik.com/free-vector/christmas-background-with-bokeh-snowflakes_1393-207.jpg?w=1380&t=st=1671224411~exp=1671225011~hmac=da6e5f5ea62174d3f84c7249e964c786ae52a17e24b02967606680ab9ce58fb1">
-            <h1 style="color:bisque">FOODIE RECIPES</h1>
+            <!-- <img src="https://img.freepik.com/free-vector/christmas-background-with-bokeh-snowflakes_1393-207.jpg?w=1380&t=st=1671224411~exp=1671225011~hmac=da6e5f5ea62174d3f84c7249e964c786ae52a17e24b02967606680ab9ce58fb1"> -->
         </div>
         <nav class="navbar navbar-expand-lg nabar-light" id="mainNav">
 
@@ -39,7 +40,7 @@
                         </li>
                         <li class="nav-item mt-auto">
                             <!-- <a class="text-dark nav-link dropdown-toggle" id="dropdown" role="button" data-bs-target="dropdown" aria-expanded="false" id="dropdown -link">Dropdown Menu</a> -->
-                            <select name="countries" id="country-list">
+                            <select name="countries" id="category-list">
                                 <option><a></a></option>
                                 <option><a></a></option>
                                 <option><a></a></option>
@@ -64,16 +65,12 @@
         <div class="card-container">
             <div class="card u-clearfix">
                 <div class="card-body" id="meal-cardBody">
-                    <span class="card-number card-circle subtle">01</span>
-                    <span class="card-author subtle">John Smith</span>
-                    <h2 class="card-title">New Brunch Recipe</h2>
-                    <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span>
-                    <div class="card-read">Read</div>
-                    <span class="card-tag card-circle subtle">C</span>
+                    <div class="recommend-section">
+                        <span class="likes">0 recommend</span>
+                        <span class="material-icons" id="recommendation">recommend</span>
+                    </div>
                 </div>
-                <img src="https://s15.postimg.cc/temvv7u4r/recipe.jpg" alt="" class="card-media" />
             </div>
-            <div class="card-shadow"></div>
             <div class="row mt-3 mb-3" id="meal-ingredients" hidden></div>
             <div class="row mt-3 mb-3" id="countries" hidden></div>
             <div class="row mt-3 mb-3" id="search-result" hidden>SEARCH RESULTS</div>
