@@ -6,16 +6,66 @@ const CATEGORY = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list'
 
 const SEARCH = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
+document.addEventListener('DOMContentLoaded', () => {
+    // loginForm()
+
+// function loginForm() {
+    const mainNavbar = document.getElementById('mainNav')
+    // const cardContainer = document.getElementsByClassName('card-container')
+    const section_1 = document.getElementById('section1')
+
+    const signupBtn = document.getElementById('signupBtn')
+    const signinBtn = document.getElementById('signinBtn')
+    const nameField = document.getElementById('nameField')
+    const signupTitle = document.getElementById('signupTitle')
+
+    signinBtn.onclick = function(){
+        nameField.style.maxHeight = '0'
+        signupTitle.innerHTML = 'Sign In'
+        signupBtn.classList.add('disable')
+        signinBtn.classList.remove('disable')
+        // cardContainer.style.display = 'none'
+        // mainNavbar.style.display = "none"
+        signinBtn.addEventListener('click', () => {
+            mainNavbar.removeAttribute('hidden')
+            mealCard.removeAttribute('hidden')
+            section_1.removeAttribute('hidden')
+            loadMenu()
+            loadIngredients()
+            loadCategory()
+            searchMeal()
+        })
+    }
+
+    signupBtn.onclick = function(){
+        nameField.style.maxHeight = '60px'
+        signupTitle.innerHTML = 'Sign Up'
+        signupBtn.classList.remove('disable')
+        signinBtn.classList.add('disable')
+        signupBtn.addEventListener('click', () => {
+            mainNavbar.removeAttribute('hidden')
+            mealCard.removeAttribute('hidden')
+            section_1.removeAttribute('hidden')
+            loadMenu()
+            loadIngredients()
+            loadCategory()
+            searchMeal()
+        })
+    }
+// }
+
+
+
 // gets the CARD DATA elements 
 const mealCard = document.getElementById('meal-cardBody')
 const ingredientCard = document.getElementById('meal-ingredients')
 const searchRowCard = document.getElementById('search-result')
-const countryRow = document.getElementById('countries')
+const categoryRow = document.getElementById('categories')
 
 // gets the CARD DATA elements 
 const homeLink = document.getElementById('home-link')
 const ingredientsLink = document.getElementById('ingredient-link')
-const countryLink = document.getElementById('country-list')
+const categoryLink = document.getElementById('category-list')
 
 // get search form data elements 
 const searchForm = document.getElementById('search-form')
@@ -26,18 +76,20 @@ const searchInput = document.getElementById('search-input')
 ingredientsLink.addEventListener('click', () => {
     mealCard.style.display = "none"
     searchRowCard.style.display = "none"
-    countryLink.style.display = "none"
+    categoryRow.style.display = "none"
     ingredientCard.removeAttribute('hidden')
     ingredientCard.style.display = "block"
+    mainNavbar.removeAttribute('hidden')
 })
 
 // click event for dropdown menu
-countryLink.addEventListener('click', event => {
+categoryLink.addEventListener('click', event => {
     mealCard.style.display = "none"
     searchRowCard.style.display = "none"
     ingredientCard.style.display = "none"
-    countryLink.style.display = "block"
-    countryLink.removeAttribute('hidden')
+    categoryRow.style.display = "block"
+    categoryRow.removeAttribute('hidden')
+    mainNavbar.removeAttribute('hidden')
     
     console.log(event.target.value)
 })
@@ -46,8 +98,9 @@ countryLink.addEventListener('click', event => {
 homeLink.addEventListener('click', () => {
     searchRowCard.style.display = "none"
     ingredientCard.style.display = "none"
-    countryLink.style.display = "block"
+    categoryLink.style.display = "block"
     mealCard.style.display = "block"
+    mainNavbar.removeAttribute('hidden')
 })
 
 // submit event for search form
@@ -57,10 +110,11 @@ searchForm.addEventListener('submit', (event) => {
     searchMeal(searchInput.value)
 
     ingredientCard.style.display = "none"
-    countryLink.style.display = "block"
+    categoryLink.style.display = "block"
     mealCard.style.display = "none"
     searchRowCard.style.display = "block"
     searchRowCard.removeAttribute('hidden')
+    mainNavbar.removeAttribute('hidden')
     // alert('event has been clicked')
 })
 
@@ -247,7 +301,7 @@ function creatingSearch(image, id, category, title, instructions, link) {
     mealTitle.innerText = title
 
     const mealInstructions = document.createElement('p')
-    mealInstructions.classList.add('card-text')
+    mealInstructions.classList.add('card-description')
     mealInstructions.innerText = instructions
 
     const mealLink = document.createElement('a')
@@ -279,7 +333,7 @@ function creatingSearch(image, id, category, title, instructions, link) {
 }
 
 // search data
-const searchMeal = (meal) => {
+function searchMeal (meal) {
     fetch(`${SEARCH}${meal}`)
         .then((response) => response.json())
         .then((data) => {
@@ -300,10 +354,42 @@ const searchMeal = (meal) => {
         })
 }
 
-document.addEventListener('DOMContentLoaded', () =>
-{
-    loadMenu()
-    // loadMenu()
-    // loadMenu()
-    loadIngredients()
+ // create category element
+ function createCategory (category) {
+    // const rootDiv = document.createElement('div')
+    // rootDiv.classList.add('col-3', 'p-1')
+
+    // const spanData = document.createElement('span')
+    // spanData.classList.add('col-12', 'badge', 'text-bg-success', 'p-2')
+    // spanData.innerText = country
+
+    const rootDiv = document.createElement('div')
+    rootDiv.classList.add("span")
+
+    const liElem = document.querySelector('#category-list')
+    liElem.innerText = category
+
+    rootDiv.appendChild(liElem)
+    return rootDiv
+}
+
+function loadCategory () {
+    fetch(CATEGORY)
+        .then(response => response.json())
+        .then(data => {
+            const categoryData = data.categories
+            const elements = categoryData.map(
+                cat => createCategory(cat.strCategory)
+            )
+            categoryRow.append(...elements)
+        })
+}
+
+
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     loadMenu()
+    //     loadIngredients()
+    //     loadCategory()
+    // })
+
 })

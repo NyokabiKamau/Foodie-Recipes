@@ -17,7 +17,7 @@
     </head>
 
     <body style="background-color:rgb(233, 222, 230)">
-       <div class="container">
+       <div class="container" id="formContainer">
             <div class="form-box">
                 <h1 id="signupTitle">Sign Up</h1>
                 <form id="login-form">
@@ -44,35 +44,13 @@
                     </div>
                 </form>
             </div>
-       </div>
-
-       <script>
-        let signupBtn = document.getElementById('signupBtn')
-        let signinBtn = document.getElementById('signinBtn')
-        let nameField = document.getElementById('nameField')
-        let signupTitle = document.getElementById('signupTitle')
-
-        signinBtn.onclick = function(){
-            nameField.style.maxHeight = '0'
-            signupTitle.innerHTML = 'Sign In'
-            signupBtn.classList.add('disable')
-            signinBtn.classList.remove('disable')
-        }
-
-        signupBtn.onclick = function(){
-            nameField.style.maxHeight = '60px'
-            signupTitle.innerHTML = 'Sign Up'
-            signupBtn.classList.remove('disable')
-            signinBtn.classList.add('disable')
-        }
-       </script> 
-
+       </div> 
 
         <div class="header">
-            <h1 id="logo">Foodie Recipes</h1>
+            <!-- <h1 id="logo">Foodie Recipes</h1> -->
             <!-- <img src="https://img.freepik.com/free-vector/christmas-background-with-bokeh-snowflakes_1393-207.jpg?w=1380&t=st=1671224411~exp=1671225011~hmac=da6e5f5ea62174d3f84c7249e964c786ae52a17e24b02967606680ab9ce58fb1"> -->
         </div>
-        <nav class="navbar navbar-expand-lg nabar-light" id="mainNav">
+        <nav class="navbar navbar-expand-lg nabar-light" id="mainNav" hidden>
 
             <div class="container-fluid">
                 <a class="navbar-brand" href=#>Foodie Recipes</a>
@@ -118,19 +96,19 @@
 
         <div class="card-container">
             <div class="card u-clearfix">
-                <div class="card-body" id="meal-cardBody">
-                    <div class="recommend-section">
+                <div class="card-body" id="meal-cardBody" hidden>
+                    <!-- <div class="recommend-section">
                         <span class="likes">0 recommend</span>
                         <span class="material-icons" id="recommendation">recommend</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="row mt-3 mb-3" id="meal-ingredients" hidden></div>
             <div class="row mt-3 mb-3" id="categories" hidden></div>
             <div class="row mt-3 mb-3" id="search-result" hidden>SEARCH RESULTS</div>
         </div>
-        <div id="section1">
-            <p class="row" id="">This is the about section</p>
+        <div id="section1" hidden>
+            <p class="row">This is the about section</p>
         </div>
     </body>
 
