@@ -12,10 +12,38 @@
         <script type="text/javascript" defer src="js/bootstrap.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+      <script src="https://kit.fontawesome.com/7d66d0b7ee.js" crossorigin="anonymous"></script>
+
     </head>
 
-    <body>
+    <body style="background-color:rgb(233, 222, 230)">
+       <div class="form-container">
+        <div class="form-box">
+            <h1>Sign Up</h1>
+            <form>
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Name">
+                    </div>
+
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" placeholder="Email">
+                    </div>
+
+                    <div class="input-field">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="password" placeholder="Password">
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+       </div>
+        
         <div class="header">
+            <h1 id="logo">Foodie Recipes</h1>
             <!-- <img src="https://img.freepik.com/free-vector/christmas-background-with-bokeh-snowflakes_1393-207.jpg?w=1380&t=st=1671224411~exp=1671225011~hmac=da6e5f5ea62174d3f84c7249e964c786ae52a17e24b02967606680ab9ce58fb1"> -->
         </div>
         <nav class="navbar navbar-expand-lg nabar-light" id="mainNav">
@@ -38,10 +66,10 @@
                         <li class="nav-item">
                             <a class="text-dark nav-link" id="ingredient-link">Ingredients</a>
                         </li>
-                        <li class="nav-item mt-auto">
+                        <li class="nav-item mt-auto dropdown">
                             <!-- <a class="text-dark nav-link dropdown-toggle" id="dropdown" role="button" data-bs-target="dropdown" aria-expanded="false" id="dropdown -link">Dropdown Menu</a> -->
                             <select name="countries" id="category-list">
-                                <option><a></a></option>
+                                <option id="one"><a></a></option>
                                 <option><a></a></option>
                                 <option><a></a></option>
                             </select>
@@ -72,7 +100,7 @@
                 </div>
             </div>
             <div class="row mt-3 mb-3" id="meal-ingredients" hidden></div>
-            <div class="row mt-3 mb-3" id="countries" hidden></div>
+            <div class="row mt-3 mb-3" id="categories" hidden></div>
             <div class="row mt-3 mb-3" id="search-result" hidden>SEARCH RESULTS</div>
         </div>
         <div id="section1">
