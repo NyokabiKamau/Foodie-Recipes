@@ -4,6 +4,7 @@
 	position: fixed;
 } */
 
+
 .u-clearfix:before,
 .u-clearfix:after {
 content: " ";
@@ -16,21 +17,22 @@ clear: both;
 
 .u-clearfix {
 *zoom: 1;
-}
+} 
 
-*{
+* {
 	margin: 0;
 	padding: 0;
 	box-sizing:border-box;
-	
 }
 .container{
-	width: 100%;
-	height: 50vh;
-	background-image: linear-gradient(rgba(0, 0, 50, 0.8), rgba(0,0,50,0.8));
+	/* width: 100%;
+	height: 50vh; */
+	background-image:transparent;
 	background-position: center;
 	background-size: cover;
-	position: relative;
+	
+	/* position: fixed;
+	transform: translate(-50%, -50%); */
 }
 
 .form-box{
@@ -43,7 +45,11 @@ clear: both;
 	background: #fff;
 	padding: 50px 110px 60px;
 	text-align: center;
-	
+	position:fixed;
+}
+@keyframes pop{
+  0%{transform:scale(0);}
+  100%{transform:scale(0);}
 }
 
 #login-form{
@@ -154,14 +160,14 @@ form p a{
 	height: 15vh;
 	text-align: center;
 	font-family: fantasy;
-	padding: 30px;
+	padding: 60px;
 }
 .header h3 {
-	padding: 30px;
+	padding: 50px;
 }
 
 #logo{
-	font-size: 70px;
+	font-size: 90px;
 	height: 4vh;
 }
 
@@ -202,9 +208,10 @@ li :hover {
 
 /* styling the Meal Recipe Display */
 
-*, *:before, *:after {
+
+/* *, *:before, *:after {
 	box-sizing: inherit;
-}
+} */
 
 .subtle {
 color: #aaa;
@@ -222,6 +229,13 @@ padding: 30px;
 position: relative;
 box-shadow: 0 0 5px rgba(75, 75, 75, .07);
 z-index: 1;
+
+}
+
+.card-text{
+	/* overflow: hidden; */
+	font-size: large;
+	
 }
 
 .card-body {
@@ -232,7 +246,7 @@ height: 100%;
 
 .card-circle {
 border: 1px solid #aaa;
-border-radius: 50%;
+/* border-radius: 50%; */
 display: inline-block;
 line-height: 50px;
 font-size: 12px;

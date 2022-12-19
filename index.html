@@ -17,12 +17,9 @@
     </head>
 
     <body style="background-color:rgb(233, 222, 230)">
-        <div>
-            <a href="#feedback-form"><i class="fa-solid fa-comments"></i></a>
-        </div>
         <div class="header">
             <h1 id="logo">Foodie Recipes.</h1>
-            <h3>MAKE IT A MEMORABLE ONE</h3>
+            <h3>MAKE YOUR MEAL MEMORABLE</h3>
             <!-- <img src="https://img.freepik.com/free-vector/christmas-background-with-bokeh-snowflakes_1393-207.jpg?w=1380&t=st=1671224411~exp=1671225011~hmac=da6e5f5ea62174d3f84c7249e964c786ae52a17e24b02967606680ab9ce58fb1"> -->
         </div>
         <nav class="navbar navbar-expand-lg nabar-light" id="mainNav" hidden>
@@ -69,57 +66,60 @@
 
         <div class="card-container">
             
-            <div class="card u-clearfix" id="formContainer">
-                        <!-- The login form -->
-                <div class="container" >
-                    <div class="form-box">
-                        <h1 id="signupTitle">Sign Up</h1>
-                        <p id="login-p1">Gain Access to a Variety of Recipes</p>
-                        <form id="login-form">
-                            <div class="input-group">
-                                <div class="input-field" id="nameField">
-                                    <i class="fa-solid fa-user"></i>
-                                    <input type="text" placeholder="Name">
-                                </div>
-
-                                <div class="input-field">
-                                    <i class="fa-solid fa-envelope"></i>
-                                    <input type="email" placeholder="Email">
-                                </div>
-
-                                <div class="input-field">
-                                    <i class="fa-solid fa-lock"></i>
-                                    <input type="password" placeholder="Password">
-                                </div>
-                                <p>Lost password <a href="#">Click Here!</a></p>
-                            </div>
-                            <div class="btn-field">
-                                <button type="button" id="signupBtn">Sign Up</button>
-                                <button type="button" class="disable" id="signinBtn">Sign In</button>
-                            </div>
-                            <p id="login-p2">By signing up, you get to receive marketing and account related emails from Foodie Recipes.</p>
-                        </form>
-                    </div>
-                </div> 
-                
-            </div>
+            
             <div id="search-form" style="background-image:url('https://img.freepik.com/free-photo/christmas-golden-decoration-white_1220-3324.jpg?w=1380&t=st=1671409312~exp=1671409912~hmac=15f105024045984fad752b9ed68c77d28ce8ff1aa4098093d6cd0e058a17bbd0'); width: 1000px; height: 300px;" hidden>
                 <form class="d-flex ms-1" role="search">
                     <input class="form-control ms-5" type="search" placeholder="Search Meal" aria-label="Search" id="search-input">
                     <button class="btn btn-secondary btn-lg ms-1" type="submit" id="search-btn">Search</button>
                 </form>
             </div>
-            <div class="card-body" id="meal-cardBody" hidden>
+            <!-- <div class="row col-6"> -->
+            <div class="row mt-3 mb-3 card-body" id="meal-cardBody">
                 <!-- <div class="recommend-section">
                     <span class="likes">0 recommend</span>
                     <span class="material-icons" id="recommendation">recommend</span>
                 </div> -->
             </div>
+            <!-- </div> -->
             <div class="row mt-3 mb-3" id="meal-ingredients" hidden></div>
             <div class="row mt-3 mb-3" id="categories" hidden></div>
             <div class="row mt-3 mb-3" id="search-result" hidden>SEARCH RESULTS</div>
         </div>
 
+        <div class="card u-clearfix" id="formContainer">
+            <!-- The login form -->
+    <div class="container" >
+        <div class="form-box" style="animation: pop 2s;">
+            <h1 id="signupTitle">Sign Up</h1>
+            <p id="login-p1">Gain Access to a Variety of Recipes</p>
+            <form id="login-form">
+                <div class="input-group">
+                    <div class="input-field" id="nameField">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Name">
+                    </div>
+
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" placeholder="Email">
+                    </div>
+
+                    <div class="input-field">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="Password">
+                    </div>
+                    <p>Lost password <a href="#">Click Here!</a></p>
+                </div>
+                <div class="btn-field">
+                    <button type="button" id="signupBtn">Sign Up</button>
+                    <button type="button" class="disable" id="signinBtn">Sign In</button>
+                </div>
+                <p id="login-p2">By signing up, you get to receive marketing and account related emails from Foodie Recipes.</p>
+            </form>
+        </div>
+    </div> 
+    
+</div>
         
         <div class="card-com" id="section1">
             <div class="row" id="about-card">
@@ -129,8 +129,8 @@
             </div>
         </div>
         <div class="feedback-widget">
-            <a href=""><span>Rate Your Experience<i class="fa-sharp fa-solid fa-comment"></i></span></a>
-            <div class="commentForm">
+            <a href="" id="rate-title"><span>Rate Your Experience<i class="fa-sharp fa-solid fa-comment"></i></span></a>
+            <div class="commentForm" id="comment-Form" hidden>
                 <form>
                     <div class="stars">
                         <input type="radio" name="rating" id="rating-5">
