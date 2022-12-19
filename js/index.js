@@ -7,53 +7,63 @@ const CATEGORY = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list'
 const SEARCH = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
 document.addEventListener('DOMContentLoaded', () => {
-    // loginForm()
 
-// function loginForm() {
-    const mainNavbar = document.getElementById('mainNav')
-    // const cardContainer = document.getElementsByClassName('card-container')
-    const section_1 = document.getElementById('section1')
+// Login Form details and events
+const mainNavbar = document.getElementById('mainNav')
+const form_Container = document.getElementById('formContainer')
+const section_1 = document.getElementById('section1')
 
-    const signupBtn = document.getElementById('signupBtn')
-    const signinBtn = document.getElementById('signinBtn')
-    const nameField = document.getElementById('nameField')
-    const signupTitle = document.getElementById('signupTitle')
+const signupBtn = document.getElementById('signupBtn')
+const signinBtn = document.getElementById('signinBtn')
+const nameField = document.getElementById('nameField')
+const signupTitle = document.getElementById('signupTitle')
 
-    signinBtn.onclick = function(){
-        nameField.style.maxHeight = '0'
-        signupTitle.innerHTML = 'Sign In'
-        signupBtn.classList.add('disable')
-        signinBtn.classList.remove('disable')
-        // cardContainer.style.display = 'none'
-        // mainNavbar.style.display = "none"
-        signinBtn.addEventListener('click', () => {
-            mainNavbar.removeAttribute('hidden')
-            mealCard.removeAttribute('hidden')
-            section_1.removeAttribute('hidden')
-            loadMenu()
-            loadIngredients()
-            loadCategory()
-            searchMeal()
-        })
-    }
+signinBtn.onclick = function(){
+    nameField.style.maxHeight = '0'
+    signupTitle.innerHTML = 'Sign In'
+    signupBtn.classList.add('disable')
+    signinBtn.classList.remove('disable')
+    signinBtn.addEventListener('click', () => {
+        alert('Successfully Signed In')
+        mainNavbar.removeAttribute('hidden')
+        mealCard.removeAttribute('hidden')
+        section_1.removeAttribute('hidden')
+        searchForm.removeAttribute('hidden')
+        searchMeal()
+        loadMenu()
+        loadIngredients()
+        loadCategory()
+        form_Container.style.display = "none"
+    })
+}
 
-    signupBtn.onclick = function(){
-        nameField.style.maxHeight = '60px'
-        signupTitle.innerHTML = 'Sign Up'
-        signupBtn.classList.remove('disable')
-        signinBtn.classList.add('disable')
-        signupBtn.addEventListener('click', () => {
-            mainNavbar.removeAttribute('hidden')
-            mealCard.removeAttribute('hidden')
-            section_1.removeAttribute('hidden')
-            loadMenu()
-            loadIngredients()
-            loadCategory()
-            searchMeal()
-        })
-    }
-// }
+signupBtn.onclick = function(){
+    nameField.style.maxHeight = '60px'
+    signupTitle.innerHTML = 'Sign Up'
+    signupBtn.classList.remove('disable')
+    signinBtn.classList.add('disable')
+    signupBtn.addEventListener('click', () => {
+        alert('Successfully Signed Up')
+        mainNavbar.removeAttribute('hidden')
+        mealCard.removeAttribute('hidden')
+        section_1.removeAttribute('hidden')
+        searchForm.removeAttribute('hidden')
+        searchMeal()
+        loadMenu()
+        loadIngredients()
+        loadCategory()
+        form_Container.style.display = "none"
+    })
+}
 
+// Feedback Form details and events
+const rateTitle = document.getElementById('rate-title')
+const rateComment = document.getElementById('comment-Form')
+
+    rateTitle.addEventListener('click', (event) => {
+        event.preventDefault()
+        rateComment.removeAttribute('hidden')
+    })
 
 
 // gets the CARD DATA elements 
@@ -71,7 +81,6 @@ const categoryLink = document.getElementById('category-list')
 const searchForm = document.getElementById('search-form')
 const searchInput = document.getElementById('search-input')
 
-
 // click event for ingredient
 ingredientsLink.addEventListener('click', () => {
     mealCard.style.display = "none"
@@ -79,7 +88,7 @@ ingredientsLink.addEventListener('click', () => {
     categoryRow.style.display = "none"
     ingredientCard.removeAttribute('hidden')
     ingredientCard.style.display = "block"
-    mainNavbar.removeAttribute('hidden')
+    
 })
 
 // click event for dropdown menu
@@ -89,18 +98,16 @@ categoryLink.addEventListener('click', event => {
     ingredientCard.style.display = "none"
     categoryRow.style.display = "block"
     categoryRow.removeAttribute('hidden')
-    mainNavbar.removeAttribute('hidden')
     
     console.log(event.target.value)
 })
 
 // click event for home link
 homeLink.addEventListener('click', () => {
-    searchRowCard.style.display = "none"
+    searchRowCard.style.display = "block"
     ingredientCard.style.display = "none"
-    categoryLink.style.display = "block"
-    mealCard.style.display = "block"
-    mainNavbar.removeAttribute('hidden')
+    categoryLink.style.display = "none"
+    mealCard.style.display = "none"
 })
 
 // submit event for search form
@@ -114,7 +121,6 @@ searchForm.addEventListener('submit', (event) => {
     mealCard.style.display = "none"
     searchRowCard.style.display = "block"
     searchRowCard.removeAttribute('hidden')
-    mainNavbar.removeAttribute('hidden')
     // alert('event has been clicked')
 })
 
@@ -160,6 +166,10 @@ function creatingMeal (image, id, category, title, linkInstruction, link) {
     description.classList.add('card-description')
     description.innerText = 'Click the links to view written instruction or watch the video tutorial'
 
+    // const description2 = document.createElement('p')
+    // description2.classList.add('card-description2')
+    // description2.innerText = 'Click the links to view written instruction or watch the video tutorial'
+
     const mealLink = document.createElement('a')
     mealLink.classList.add('mt-1', 'mb-2', 'me-3', 'ms-5', 'btn', 'btn-warning')
     mealLink.innerText = 'Video ...'
@@ -171,6 +181,11 @@ function creatingMeal (image, id, category, title, linkInstruction, link) {
 
     // const likeRecommend = document.querySelector('material-icons')
 
+    // const likebutton = document.createElement('h5')
+    const likebutton = document.createElement("button")
+    likebutton.innerText = "♥ like"
+    
+
     // append body elements to the card div
     cardDiv.appendChild(mealId)
     cardDiv.appendChild(mealCategory)
@@ -178,6 +193,8 @@ function creatingMeal (image, id, category, title, linkInstruction, link) {
     cardDiv.appendChild(description)
     cardDiv.appendChild(mealInstructions)
     cardDiv.appendChild(mealLink)
+    cardDiv.appendChild(likebutton)
+    // cardDiv.appendChild(likebutton)
     // cardDiv.appendChild(likeRecommend)
 
 
@@ -243,6 +260,12 @@ function creatingIngredients (image, id, title) {
     mealTitle.classList.add('card-title')
     mealTitle.innerText = title
 
+    // const likebutton = document.createElement('h5')
+    // // const likebutton = document.createAttribute("button")
+    // likebutton.innerText = "♥ like"
+    // likebutton.addEventListener('click', 
+    // alert(like))
+
     rootDiv.appendChild(rowDiv)
     rootDiv.appendChild(cardDiv)
 
@@ -250,6 +273,8 @@ function creatingIngredients (image, id, title) {
 
     cardDiv.appendChild(mealId)
     cardDiv.appendChild(mealTitle)
+    // cardDiv.appendChild(likebutton)
+
 
     return rootDiv
 
@@ -393,3 +418,19 @@ function loadCategory () {
     // })
 
 })
+
+// function creatingLikes (meals){
+//     const likebutton = document.createAttribute("button")
+//     likebutton.innerHTML = "♥ like"
+//     likebutton.addEventListener('click', clickVote.bind(this,meals))
+// }
+
+// function clickVote(meal) {
+//     //fucntion to increment vote count
+//      let clickedLike = document.getElementById(`vote-${meal.id}`)
+//      let currentVote = clickedLike.textContent
+//      let numberVote = Number(currentVote)
+     
+//      clickedLike.innerHTML = numberVote + 1
+     
+//    }
