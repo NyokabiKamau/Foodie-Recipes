@@ -7,7 +7,7 @@ const CATEGORY = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list'
 const SEARCH = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
 document.addEventListener('DOMContentLoaded', () => {
-
+    loadMenu()
 // Login Form details and events
 const mainNavbar = document.getElementById('mainNav')
 const form_Container = document.getElementById('formContainer')
@@ -125,7 +125,7 @@ searchForm.addEventListener('submit', (event) => {
 })
 
 // creating the meal element
-function creatingMeal (image, id, category, title, linkInstruction, link) {
+function creatingMeal (image, id, category, title, instructions, link) {
     const rootDiv = document.createElement('div')
     rootDiv.classList.add('card', 'u-clearfix', 'col-12', 'px-0', 'mb-3')
 
@@ -156,15 +156,22 @@ function creatingMeal (image, id, category, title, linkInstruction, link) {
     mealCategory.classList.add('card-category')
     mealCategory.innerText = category
 
-    const mealInstructions = document.createElement('a')
-    mealInstructions.classList.add('mt-1', 'mb-2', 'me-1', 'ms-5', 'btn', 'btn-warning')
-    mealInstructions.innerText = 'Instructions'
-    mealInstructions.href = linkInstruction
-    mealInstructions.target = '_blank'
+    const mealInstructions = document.createElement('div')
+    mealInstructions.classList.add('card-text')
+    mealInstructions.innerText = instructions
+    mealInstructions.style.display = 'none'
 
-    const description = document.createElement('p')
-    description.classList.add('card-description')
-    description.innerText = 'Click the links to view written instruction or watch the video tutorial'
+    const readBtn = document.createElement('button')
+    readBtn.classList.add('mt-1', 'mb-2', 'me-1', 'ms-5', 'btn', 'btn-warning')
+    readBtn.innerText = 'READ'
+    readBtn.addEventListener('click', () => {
+        mealInstructions.style.display = 'block'
+        readBtn.style.display = 'none'
+    })
+
+    // const description = document.createElement('p')
+    // description.classList.add('card-description')
+    // description.innerText = 'Click the links to view written instruction or watch the video tutorial'
 
     // const description2 = document.createElement('p')
     // description2.classList.add('card-description2')
@@ -190,10 +197,11 @@ function creatingMeal (image, id, category, title, linkInstruction, link) {
     cardDiv.appendChild(mealId)
     cardDiv.appendChild(mealCategory)
     cardDiv.appendChild(mealTitle)
-    cardDiv.appendChild(description)
+    // cardDiv.appendChild(description)
     cardDiv.appendChild(mealInstructions)
     cardDiv.appendChild(mealLink)
     cardDiv.appendChild(likebutton)
+    cardDiv.appendChild(readBtn)
     // cardDiv.appendChild(likebutton)
     // cardDiv.appendChild(likeRecommend)
 
@@ -222,7 +230,7 @@ function loadMenu () {
             const id = mealData.idMeal
             const category = mealData.strCategory
             const title = mealData.strMeal
-            const instructions = mealData.strSource
+            const instructions = mealData.strInstructions
             const link = mealData.strYoutube
 
             const mealElement = creatingMeal(image, id, category, title, instructions, link)
