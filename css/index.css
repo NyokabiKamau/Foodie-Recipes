@@ -1,10 +1,8 @@
 
-/* styling the logo */
+/* HEADER SECTION */
 
 .header{
 	background-color: rgb(210, 237, 227);
-	/* background-position: center; 
-	background-size: cover;  */
 	height: 22vh;
 	text-align: center;
 	font-family: fantasy;
@@ -24,7 +22,9 @@
 	
 }
 
-/* styling the navbar */
+
+
+/* NAVBAR SECTION */
 
 #mainNav{
 	background-color:rgb(215, 183, 200);
@@ -49,19 +49,27 @@ li :hover {
 	background-color: rgb(160, 218, 199);
 }
 
-/* styling the search form */
+
+
+/* SEARCH FORM */
 
 #search-input{
 	font-size: 35px;
 	background-color: rgb(58, 58, 96);
 	width: 300px;
+	color: white;
+	font-family: sans-serif;
 }
 
 #search-btn{
 	font-size: 35px;
+	font-family: sans-serif;
 }
 
-/* stylying the login form */
+
+
+/* AUTHENTIFICATION FORM */
+
 .u-clearfix:before,
 .u-clearfix:after {
 content: " ";
@@ -211,20 +219,15 @@ form p a{
 }
 
 
-/* styling the Meal Recipe Display */
 
-
-/* *, *:before, *:after {
-	box-sizing: inherit;
-} */
+/* FOOD CONTENT SECTION */
 
 .subtle {
 color: #aaa;
 }
 
 .card-container {
-
-	margin: 25px auto 0;
+	margin: 370px auto 0;
 	position: relative;
 	width: 1100px;
 	color: crimson;
@@ -307,9 +310,19 @@ text-align: center;
 	text-transform: uppercase;
 }
 
+#likeBtn{
+    background-color: red;
+    border:none;
+    border-radius: 18px;
+    color: white;
+    padding: 2px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 36px;
+}
 
-
-/* styling feedback form */
+/* FEEDBACK FORM */
 .feedback-widget{
 	font-family: Arial, Helvetica, sans-serif;
 	position:fixed;
@@ -335,7 +348,6 @@ text-align: center;
 	width: 350px;
 	padding: 15px;
 	font-size: 20px;
-	/* display: none; */
 }
 .stars:not(:checked)>input{
 	display: none;

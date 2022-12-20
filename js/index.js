@@ -1,3 +1,4 @@
+
 const INGREDIENT = 'https://www.themealdb.com/api/json/v1/1/filter.php?i='
 
 const MEAL = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             searchMeal()
             loadMenu()
             loadIngredients()
-            // loadCategory()
+            loadCategory()
             form_Container.style.display = "none"
         })
     }
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             searchMeal()
             loadMenu()
             loadIngredients()
-            // loadCategory()
+            loadCategory()
             form_Container.style.display = "none"
         })
     }
@@ -68,6 +69,18 @@ const rateComment = document.getElementById('comment-Form')
         event.preventDefault()
         rateComment.removeAttribute('hidden')
     })
+
+
+// ABOUT SECTION
+const about = document.getElementById('about-link')
+about.addEventListener('click', () => {
+    about.removeAttribute('hidden')
+    about.style.display = "block"
+    mealCard.style.display = "none"
+    searchRowCard.style.display = "none"
+    ingredientCard.style.display = "none"
+    
+})
 
 
 // gets the CARD DATA elements 
@@ -92,18 +105,17 @@ ingredientsLink.addEventListener('click', () => {
     categoryRow.style.display = "none"
     ingredientCard.removeAttribute('hidden')
     ingredientCard.style.display = "block"
-    
+    about.style.display = "none"
+    loadAnimals()
 })
 
-// click event for dropdown menu
+// click event for categories
 categoryLink.addEventListener('click', event => {
     mealCard.style.display = "none"
     searchRowCard.style.display = "none"
     ingredientCard.style.display = "none"
     categoryRow.style.display = "block"
     categoryRow.removeAttribute('hidden')
-    
-    console.log(event.target.value)
 })
 
 // click event for home link
@@ -111,7 +123,8 @@ homeLink.addEventListener('click', () => {
     searchRowCard.style.display = "block"
     ingredientCard.style.display = "none"
     categoryLink.style.display = "none"
-    mealCard.style.display = "none"
+    mealCard.style.display = "block"
+    about.style.display = "none"
 })
 
 // submit event for search form
@@ -121,12 +134,24 @@ searchForm.addEventListener('submit', (event) => {
     searchMeal(searchInput.value)
 
     ingredientCard.style.display = "none"
-    categoryLink.style.display = "block"
+    categoryLink.style.display = "none"
     mealCard.style.display = "none"
     searchRowCard.style.display = "block"
     searchRowCard.removeAttribute('hidden')
-    // alert('event has been clicked')
+    about.style.display = "none"
 })
+
+
+
+
+
+// LIKE COUNT FUNCTION FOR EVENT LISTENER
+function likeCount () {
+    const currentVote = count.textContent
+    const numberVote = Number(currentVote)
+    count.innerHTML = numberVote + 1
+}
+
 
 // creating the meal element
 function creatingMeal (image, id, category, title, instructions, link) {
@@ -137,10 +162,10 @@ function creatingMeal (image, id, category, title, instructions, link) {
     rowDiv.classList.add('row')
 
     const cardDiv = document.createElement('div')
-    cardDiv.classList.add('col-6', 'card-body')
+    cardDiv.classList.add('col-5', 'card-body')
 
     const imageDiv = document.createElement('div')
-    imageDiv.classList.add( 'col-6')
+    imageDiv.classList.add('col-7')
 
     const mealImage = document.createElement('img')
     mealImage.classList.add('card-media','h-100' )
@@ -188,15 +213,12 @@ function creatingMeal (image, id, category, title, instructions, link) {
     mealLink.href = link
     mealLink.target = '_blank'
 
-    // const countRecommend = document.querySelector('.likes')
-    // countRecommend.innerText = `${data.likes} recommend`
-
-    // const likeRecommend = document.querySelector('material-icons')
-
-    // const likebutton = document.createElement('h5')
     const likebutton = document.createElement("button")
-    likebutton.innerText = "♥ like"
-    
+    const count = document.createElement('p')
+    likebutton.setAttribute('id', 'likeBtn')
+    likebutton.innerText = "♥"
+    likebutton.addEventListener('click', likeCount)
+
 
     // append body elements to the card div
     cardDiv.appendChild(mealId)
@@ -207,8 +229,8 @@ function creatingMeal (image, id, category, title, instructions, link) {
     cardDiv.appendChild(mealLink)
     cardDiv.appendChild(likebutton)
     cardDiv.appendChild(readBtn)
-    // cardDiv.appendChild(likebutton)
-    // cardDiv.appendChild(likeRecommend)
+    cardDiv.appendChild(count)
+    cardDiv.appendChild(likebutton)
 
 
     // append image element to image div
@@ -295,12 +317,13 @@ function creatingIngredients (id, ingredient, description) {
     readBtn.addEventListener('click', () => {
         mealInstructions.style.display = 'block'
         readBtn.style.display = 'none'
+    })
 
-    // const likebutton = document.createElement('h5')
-    // // const likebutton = document.createAttribute("button")
-    // likebutton.innerText = "♥ like"
-    // likebutton.addEventListener('click', 
-    // alert(like))
+    const likebutton = document.createElement("button")
+    const count = document.createElement('p')
+    likebutton.setAttribute('id', 'likeBtn')
+    likebutton.innerText = "♥"
+    likebutton.addEventListener('click', likeCount)
 
     rootDiv.appendChild(rowDiv)
     rootDiv.appendChild(cardDiv)
@@ -308,13 +331,15 @@ function creatingIngredients (id, ingredient, description) {
     cardDiv.appendChild(mealId)
     cardDiv.appendChild(mealTitle)
     cardDiv.appendChild(mealInstructions)
-    // cardDiv.appendChild(likebutton)
+    cardDiv.appendChild(count)
+    cardDiv.appendChild(likebutton)
 
 
     return rootDiv
 
 }
-)}
+
+
 function loadIngredients () {
     fetch(INGREDIENT)
         .then((response) => response.json())
@@ -368,39 +393,17 @@ function searchMeal (meal) {
 //     return rootDiv
 // }
 
-// function loadCategory () {
-//     fetch(CATEGORY)
-//         .then(response => response.json())
-//         .then(data => {
-//             const categoryData = data.meals
-//             const elements = categoryData.map(
-//                 cat => createCategory(cat.idIngredient, cat.strIngredient, cat.strDescription)
-//             )
-//             categoryRow.append(...elements)
-//         })
-// }
 
 
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     loadMenu()
-    //     loadIngredients()
-    //     loadCategory()
-    // })
-
-
-
-// function creatingLikes (meals){
-//     const likebutton = document.createAttribute("button")
-//     likebutton.innerHTML = "♥ like"
-//     likebutton.addEventListener('click', clickVote.bind(this,meals))
-// }
-
-// function clickVote(meal) {
-//     //fucntion to increment vote count
-//      let clickedLike = document.getElementById(`vote-${meal.id}`)
-//      let currentVote = clickedLike.textContent
-//      let numberVote = Number(currentVote)
-     
-//      clickedLike.innerHTML = numberVote + 1
-     
-//    }
+    // // load meal categories
+    // const loadCategories = () => {
+    //     fetch(CATEGORIES)
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             const categoriesData = data.categories
+    //             const categoryElems = categoriesData.map(
+    //                 cat => createCategory(cat.strCategoryThumb, cat.strCategory)
+    //             )
+    //             mealCategoryRow.append(...categoryElems)
+    //         })
+    // }
