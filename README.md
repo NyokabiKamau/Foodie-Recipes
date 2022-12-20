@@ -65,4 +65,4 @@ This project was contributed to by:
 * [Nyokabi Kamau](https://github.com/NyokabiKamau/)
 
 # License
-* This project is licensed under ISC
+* This project is licensed under GNU General Public License v2.0
