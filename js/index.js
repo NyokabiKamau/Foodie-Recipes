@@ -71,8 +71,7 @@ aboutLink.addEventListener('click', () => {
     about.style.display = "block"
     mealCard.style.display = "none"
     searchRowCard.style.display = "none"
-    
-})
+    })
 
 
 // gets the CARD DATA elements 
@@ -124,19 +123,19 @@ recipeLink.addEventListener('click', () => {
 // creating the meal element
 function creatingMeal (image, id, category, title, instructions, link) {
     const rootDiv = document.createElement('div')
-    rootDiv.classList.add('card', 'u-clearfix', 'col-12', 'px-0', 'mb-3')
+    rootDiv.classList.add('card', 'col-12', 'px-0', 'mb-3')
 
     const rowDiv = document.createElement('div')
     rowDiv.classList.add('row')
 
     const cardDiv = document.createElement('div')
-    // cardDiv.classList.add('card-body')
+    cardDiv.classList.add('col-5', 'card-body')
 
     const imageDiv = document.createElement('div')
-    // imageDiv.classList.add('column')
+    imageDiv.classList.add('col-6')
 
     const mealImage = document.createElement('img')
-    mealImage.classList.add('card-media','h-100' )
+    mealImage.classList.add('card-media','h-100')
     mealImage.src = image
     mealImage.objectFit = 'cover'
     mealImage.float = 'right'
@@ -151,7 +150,7 @@ function creatingMeal (image, id, category, title, instructions, link) {
 
     const mealCategory = document.createElement('span')
     mealCategory.classList.add('card-category')
-    mealCategory.innerText = category
+    mealCategory.innerText = `(${category})`
 
     const mealInstructions = document.createElement('div')
     mealInstructions.classList.add('card-text', 'hiddenText', 'visibleText')
