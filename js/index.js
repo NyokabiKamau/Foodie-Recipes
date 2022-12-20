@@ -5,7 +5,7 @@ const MEAL = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
 const RANDOM = 'https://www.themealdb.com/api/json/v1/1/random.php'
 
-const CATEGORY = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list'
+const CATEGORY = 'https://www.themealdb.com/api/json/v1/1/categories.php'
 
 const SEARCH = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
@@ -13,9 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadRandom()
     // loadMenu()
     // Login Form details and events
-    const mainNavbar = document.getElementById('mainNav')
     const form_Container = document.getElementById('formContainer')
-    const section_1 = document.getElementById('section1')
 
     const signupBtn = document.getElementById('signupBtn')
     const signinBtn = document.getElementById('signinBtn')
@@ -29,10 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         signinBtn.classList.remove('disable')
         signinBtn.addEventListener('click', () => {
             alert('Successfully Signed In')
-            mainNavbar.removeAttribute('hidden')
-            mealCard.removeAttribute('hidden')
-            section_1.removeAttribute('hidden')
-            searchForm.removeAttribute('hidden')
             searchMeal()
             loadMenu()
             loadIngredients()
@@ -48,10 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         signinBtn.classList.add('disable')
         signupBtn.addEventListener('click', () => {
             alert('Successfully Signed Up')
-            mainNavbar.removeAttribute('hidden')
-            mealCard.removeAttribute('hidden')
-            section_1.removeAttribute('hidden')
-            searchForm.removeAttribute('hidden')
             searchMeal()
             loadMenu()
             loadIngredients()
@@ -106,7 +96,7 @@ ingredientsLink.addEventListener('click', () => {
     ingredientCard.removeAttribute('hidden')
     ingredientCard.style.display = "block"
     about.style.display = "none"
-    loadAnimals()
+    loadIngredients()
 })
 
 // click event for categories
@@ -116,6 +106,7 @@ categoryLink.addEventListener('click', event => {
     ingredientCard.style.display = "none"
     categoryRow.style.display = "block"
     categoryRow.removeAttribute('hidden')
+    loadCategory()
 })
 
 // click event for home link
@@ -141,16 +132,6 @@ searchForm.addEventListener('submit', (event) => {
     about.style.display = "none"
 })
 
-
-
-
-
-// LIKE COUNT FUNCTION FOR EVENT LISTENER
-function likeCount () {
-    const currentVote = count.textContent
-    const numberVote = Number(currentVote)
-    count.innerHTML = numberVote + 1
-}
 
 
 // creating the meal element
@@ -193,38 +174,43 @@ function creatingMeal (image, id, category, title, instructions, link) {
 
     const readBtn = document.createElement('button')
     readBtn.classList.add('mt-1', 'mb-2', 'me-1', 'ms-5', 'btn', 'btn-warning')
+    readBtn.setAttribute('id', 'readBtn')
     readBtn.innerText = 'READ'
     readBtn.addEventListener('click', () => {
         mealInstructions.style.display = 'block'
         readBtn.style.display = 'none'
     })
 
-    // const description = document.createElement('p')
-    // description.classList.add('card-description')
-    // description.innerText = 'Click the links to view written instruction or watch the video tutorial'
-
-    // const description2 = document.createElement('p')
-    // description2.classList.add('card-description2')
-    // description2.innerText = 'Click the links to view written instruction or watch the video tutorial'
+    const description = document.createElement('p')
+    description.classList.add('card-description')
+    description.innerText = 'Click the links to view written instruction or watch the video tutorial'
 
     const mealLink = document.createElement('a')
     mealLink.classList.add('mt-1', 'mb-2', 'me-3', 'ms-5', 'btn', 'btn-warning')
+    mealLink.setAttribute('id', 'videoBtn')
     mealLink.innerText = 'Video ...'
     mealLink.href = link
     mealLink.target = '_blank'
 
-    const likebutton = document.createElement("button")
+    
     const count = document.createElement('p')
+    count.setAttribute('id', 'countLike')
+
+    const likebutton = document.createElement("button")
     likebutton.setAttribute('id', 'likeBtn')
     likebutton.innerText = "♥"
-    likebutton.addEventListener('click', likeCount)
+    likebutton.addEventListener('click', function likes() {
+        const currentVote = count.textContent
+        const numberVote = Number(currentVote)
+        count.innerHTML = numberVote + 1
+    })
 
 
     // append body elements to the card div
     cardDiv.appendChild(mealId)
     cardDiv.appendChild(mealCategory)
     cardDiv.appendChild(mealTitle)
-    // cardDiv.appendChild(description)
+    cardDiv.appendChild(description)
     cardDiv.appendChild(mealInstructions)
     cardDiv.appendChild(mealLink)
     cardDiv.appendChild(likebutton)
@@ -288,7 +274,7 @@ function loadRandom () {
 }
 
 // creating ingredients element
-function creatingIngredients (id, ingredient, description) {
+function creatingIngredients (ingredient, image, id) {
     const rootDiv = document.createElement('div')
     rootDiv.classList.add('card', 'u-clearfix', 'col-12', 'px-0', 'mb-3')
 
@@ -298,6 +284,15 @@ function creatingIngredients (id, ingredient, description) {
     const cardDiv = document.createElement('div')
     cardDiv.classList.add('card-body', 'col-6')
 
+    const imageDiv = document.createElement('div')
+    imageDiv.classList.add('col-7')
+
+    const mealImage = document.createElement('img')
+    mealImage.classList.add('card-media','h-100' )
+    mealImage.src = image
+    mealImage.objectFit = 'cover'
+    mealImage.float = 'right'
+
     const mealId = document.createElement('span')
     mealId.classList.add('card-number', 'card-circle', 'subtle')
     mealId.innerText = id
@@ -306,36 +301,19 @@ function creatingIngredients (id, ingredient, description) {
     mealTitle.classList.add('card-title')
     mealTitle.innerText = ingredient
 
-    const mealInstructions = document.createElement('div')
-    mealInstructions.classList.add('card-text')
-    mealInstructions.innerText = description
-    mealInstructions.style.display = 'none'
 
-    const readBtn = document.createElement('button')
-    readBtn.classList.add('mt-1', 'mb-2', 'me-1', 'ms-5', 'btn', 'btn-warning')
-    readBtn.innerText = 'READ'
-    readBtn.addEventListener('click', () => {
-        mealInstructions.style.display = 'block'
-        readBtn.style.display = 'none'
-    })
-
-    const likebutton = document.createElement("button")
-    const count = document.createElement('p')
-    likebutton.setAttribute('id', 'likeBtn')
-    likebutton.innerText = "♥"
-    likebutton.addEventListener('click', likeCount)
-
-    rootDiv.appendChild(rowDiv)
-    rootDiv.appendChild(cardDiv)
-
-    cardDiv.appendChild(mealId)
     cardDiv.appendChild(mealTitle)
-    cardDiv.appendChild(mealInstructions)
-    cardDiv.appendChild(count)
-    cardDiv.appendChild(likebutton)
+    cardDiv.appendChild(mealId)
 
+    // append image element to image div
+    imageDiv.appendChild(mealImage)
 
-    return rootDiv
+    // append divs to row
+    rowDiv.appendChild(cardDiv)
+    rowDiv.appendChild(imageDiv)
+
+    // append the row to the root
+    rootDiv.appendChild(rowDiv)
 
 }
 
@@ -346,7 +324,7 @@ function loadIngredients () {
         .then(data => {
             const mealData = data.meals
             const ingrElement = mealData.map(
-                cat => creatingIngredients(cat.strMealThumb, cat.idMeal, cat.strMeal)
+                cat => creatingIngredients(cat.strMeal,cat.strMealThumb, cat.idMeal)
             )
             ingredientCard.append(...ingrElement)
         })
@@ -375,35 +353,41 @@ function searchMeal (meal) {
 }
 
  // create category element
-//  function createCategory (category) {
-//     // const rootDiv = document.createElement('div')
-//     // rootDiv.classList.add('col-3', 'p-1')
+ const createCategory = (image, name) => {
 
-//     // const spanData = document.createElement('span')
-//     // spanData.classList.add('col-12', 'badge', 'text-bg-success', 'p-2')
-//     // spanData.innerText = country
+    const rootDiv = document.createElement('div')
+    rootDiv.classList.add('col-4', 'p-1')
 
-//     const rootDiv = document.createElement('div')
-//     rootDiv.classList.add("span")
+    const cardDiv = document.createElement('div')
+    cardDiv.classList.add('card', 'col-12', 'p-2')
 
-//     const liElem = document.querySelector('#category-list')
-//     liElem.innerText = category
+    const categoryImg = document.createElement('img')
+    categoryImg.classList.add('card-img-top')
+    categoryImg.src = image
 
-//     rootDiv.appendChild(liElem)
-//     return rootDiv
-// }
+    const categoryTitle = document.createElement('h4')
+    categoryTitle.classList.add('card-title')
+    categoryTitle.innerText = name
 
+    // append title and image to card
+    cardDiv.appendChild(categoryImg)
+    cardDiv.appendChild(categoryTitle)
 
+    rootDiv.appendChild(cardDiv)
 
-    // // load meal categories
-    // const loadCategories = () => {
-    //     fetch(CATEGORIES)
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             const categoriesData = data.categories
-    //             const categoryElems = categoriesData.map(
-    //                 cat => createCategory(cat.strCategoryThumb, cat.strCategory)
-    //             )
-    //             mealCategoryRow.append(...categoryElems)
-    //         })
-    // }
+    return rootDiv
+
+}
+
+    // load meal categories
+    const loadCategory = () => {
+        fetch(CATEGORY)
+            .then((response) => response.json())
+            .then((data) => {
+                const categoriesData = data.categories
+                const categoryElems = categoriesData.map(
+                    cat => createCategory(cat.strCategoryThumb, cat.strCategory)
+                )
+                categoryRow.append(...categoryElems)
+            })
+    }
