@@ -16,23 +16,15 @@
 
     </head>
 
-    <body style="background-color:rgb(233, 222, 230)">
-        <div class="header">
+    <body style="background-color:rgb(210, 237, 227)">
+        <div class="header fixed-top">
             <h1 id="logo">Foodie Recipes.</h1>
             <h3>MAKE YOUR MEAL MEMORABLE</h3>
             <!-- <img src="https://img.freepik.com/free-vector/christmas-background-with-bokeh-snowflakes_1393-207.jpg?w=1380&t=st=1671224411~exp=1671225011~hmac=da6e5f5ea62174d3f84c7249e964c786ae52a17e24b02967606680ab9ce58fb1"> -->
-        </div>
-        <nav class="navbar navbar-expand-lg nabar-light" id="mainNav" hidden>
 
-            <div class="container-fluid">
-                <a class="navbar-brand" href=#>Foodie Recipes</a>
-                
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" id="menuBtn">Menu
-                    <i class="fa fa-bars"></i>
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav me-auto">
+            <nav class="navbar navbar-expand-lg nabar-light" id="mainNav">
+                <div class="container-fluid">
+                    <ul class="navbar-nav ">
                         <li class="nav-item">
                             <a class="text-dark nav-link" active aria-current="page" id="home-link">Home</a>
                         </li>
@@ -42,39 +34,21 @@
                         <li class="nav-item">
                             <a class="text-dark nav-link" id="ingredient-link">Ingredients</a>
                         </li>
-                        <li class="nav-item mt-auto dropdown">
-                            <!-- <a class="text-dark nav-link dropdown-toggle" id="dropdown" role="button" data-bs-target="dropdown" aria-expanded="false" id="dropdown -link">Dropdown Menu</a> -->
-                            <select name="countries" id="category-list">
-                                <option id="one"><a></a></option>
-                                <option><a></a></option>
-                                <option><a></a></option>
-                            </select>
-                        </li>
-                        
-                        <!-- <li class="nav-item mt-auto">
-                            <select name="cities" id="city-list"> 
-                                <option value="New York">New York</option> 
-                                <option value="Boston">Boston</option> 
-                                <option value="Montreal">Montreal</option> 
-                            </select> 
-                        </li> -->
-                    </ul>
-                    
-                </div>         
-            </div>
-        </nav>
+                    </ul>        
+                </div>
+                <div class="me-0" id="search-form">
+                    <form class="d-flex ms-0 me-3" role="search">
+                        <input class="form-control" type="search" placeholder="Search Meal" aria-label="Search" id="search-input">
+                        <button class="btn btn-secondary btn-lg ms-3" type="submit" id="search-btn">Search</button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+       
 
         <div class="card-container">
-            
-            
-            <div id="search-form" style="background-image:url('https://img.freepik.com/free-photo/christmas-golden-decoration-white_1220-3324.jpg?w=1380&t=st=1671409312~exp=1671409912~hmac=15f105024045984fad752b9ed68c77d28ce8ff1aa4098093d6cd0e058a17bbd0'); width: 1000px; height: 300px;" hidden>
-                <form class="d-flex ms-1" role="search">
-                    <input class="form-control ms-5" type="search" placeholder="Search Meal" aria-label="Search" id="search-input">
-                    <button class="btn btn-secondary btn-lg ms-1" type="submit" id="search-btn">Search</button>
-                </form>
-            </div>
             <!-- <div class="row col-6"> -->
-            <div class="row mt-3 mb-3 card-body" id="meal-cardBody">
+            <div class="row mt-5 mb-3 card-body" id="meal-cardBody">
                 <!-- <div class="recommend-section">
                     <span class="likes">0 recommend</span>
                     <span class="material-icons" id="recommendation">recommend</span>
@@ -88,8 +62,8 @@
 
         <div class="card u-clearfix" id="formContainer">
             <!-- The login form -->
-    <div class="container" >
-        <div class="form-box" style="animation: pop 2s;">
+    <div class="container">
+        <div class="form-box" style="animation: pop 0s;">
             <h1 id="signupTitle">Sign Up</h1>
             <p id="login-p1">Gain Access to a Variety of Recipes</p>
             <form id="login-form">
@@ -121,15 +95,11 @@
     
 </div>
         
-        <div class="card-com" id="section1">
-            <div class="row" id="about-card">
-                <div class="card col-12 ">
-                    <p class="row">This is the about section</p>
-                </div>
-            </div>
+        <div class="card" id="section1" >
+                <p>This is the about section</p>
         </div>
         <div class="feedback-widget">
-            <a href="" id="rate-title"><span>Rate Your Experience<i class="fa-sharp fa-solid fa-comment"></i></span></a>
+            <a href="" id="rate-title"><span>Feedback<i class=" ms-3 fa-sharp fa-solid fa-comment"></i></span></a>
             <div class="commentForm" id="comment-Form" hidden>
                 <form>
                     <div class="stars">
