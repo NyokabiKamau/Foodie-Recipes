@@ -18,10 +18,11 @@
 
     <body style="background-color:rgb(210, 237, 227)">
         <div class="header fixed-top">
+             <!-- HEADER SECTION -->
             <h1 id="logo">Foodie Recipes.</h1>
             <h3>MAKE YOUR MEAL MEMORABLE</h3>
-            <!-- <img src="https://img.freepik.com/free-vector/christmas-background-with-bokeh-snowflakes_1393-207.jpg?w=1380&t=st=1671224411~exp=1671225011~hmac=da6e5f5ea62174d3f84c7249e964c786ae52a17e24b02967606680ab9ce58fb1"> -->
 
+             <!-- NAVBAR SECTION -->
             <nav class="navbar navbar-expand-lg nabar-light" id="mainNav">
                 <div class="container-fluid">
                     <ul class="navbar-nav ">
@@ -29,13 +30,18 @@
                             <a class="text-dark nav-link" active aria-current="page" id="home-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="text-dark nav-link" id="about-link" href="#about-card">About</a>
+                            <a class="text-dark nav-link" id="about-link">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-dark nav-link" id="category-list">Category</a>
                         </li>
                         <li class="nav-item">
                             <a class="text-dark nav-link" id="ingredient-link">Ingredients</a>
                         </li>
                     </ul>        
                 </div>
+
+                 <!-- SEARCH FORM -->
                 <div class="me-0" id="search-form">
                     <form class="d-flex ms-0 me-3" role="search">
                         <input class="form-control" type="search" placeholder="Search Meal" aria-label="Search" id="search-input">
@@ -45,59 +51,59 @@
             </nav>
         </div>
        
-
+        <!-- FOOD CONTENT SECTION -->
         <div class="card-container">
             <!-- <div class="row col-6"> -->
-            <div class="row mt-5 mb-3 card-body" id="meal-cardBody">
-                <!-- <div class="recommend-section">
-                    <span class="likes">0 recommend</span>
-                    <span class="material-icons" id="recommendation">recommend</span>
-                </div> -->
-            </div>
+            <div class="row mt-5 mb-3 card-body" id="meal-cardBody"></div>
             <!-- </div> -->
             <div class="row mt-3 mb-3" id="meal-ingredients" hidden></div>
             <div class="row mt-3 mb-3" id="categories" hidden></div>
             <div class="row mt-3 mb-3" id="search-result" hidden>SEARCH RESULTS</div>
         </div>
 
-        <div class="card u-clearfix" id="formContainer">
-            <!-- The login form -->
-    <div class="container">
-        <div class="form-box" style="animation: pop 0s;">
-            <h1 id="signupTitle">Sign Up</h1>
-            <p id="login-p1">Gain Access to a Variety of Recipes</p>
-            <form id="login-form">
-                <div class="input-group">
-                    <div class="input-field" id="nameField">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="Name">
-                    </div>
+        <!-- AUTHENTIFICATION FORM -->
+        <div class="card u-clearfix" id="formContainer" >
+            <div class="container">
+                <div class="form-box" style="animation: pop 2s;">
+                    <h1 id="signupTitle">Sign Up</h1>
+                    <p id="login-p1">Gain Access to a Variety of Recipes</p>
+                    <form id="login-form">
+                        <div class="input-group">
+                            <div class="input-field" id="nameField">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" placeholder="Name">
+                            </div>
 
-                    <div class="input-field">
-                        <i class="fa-solid fa-envelope"></i>
-                        <input type="email" placeholder="Email">
-                    </div>
+                            <div class="input-field">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" placeholder="Email">
+                            </div>
 
-                    <div class="input-field">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" placeholder="Password">
-                    </div>
-                    <p>Lost password <a href="#">Click Here!</a></p>
+                            <div class="input-field">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" placeholder="Password">
+                            </div>
+                            <p>Lost password <a href="#">Click Here!</a></p>
+                        </div>
+                        <div class="btn-field">
+                            <button type="button" id="signupBtn">Sign Up</button>
+                            <button type="button" class="disable" id="signinBtn">Sign In</button>
+                        </div>
+                        <p id="login-p2">By signing up, you get full access to unique Foodie Recipes.</p>
+                    </form>
                 </div>
-                <div class="btn-field">
-                    <button type="button" id="signupBtn">Sign Up</button>
-                    <button type="button" class="disable" id="signinBtn">Sign In</button>
-                </div>
-                <p id="login-p2">By signing up, you get to receive marketing and account related emails from Foodie Recipes.</p>
-            </form>
+            </div> 
         </div>
-    </div> 
-    
-</div>
         
-        <div class="card" id="section1" >
-                <p>This is the about section</p>
+         <!-- ABOUT SECTION -->
+        <div class="card" id="section1">
+            <h2>Food Variety</h2>
+            <p>we have meals from different countries</p>
+            <h2>differentiation</h2>
+            <p>you can find meals best for different times of the day</p>
         </div>
+
+         <!-- FEEDBACK FORM -->
         <div class="feedback-widget">
             <a href="" id="rate-title"><span>Feedback<i class=" ms-3 fa-sharp fa-solid fa-comment"></i></span></a>
             <div class="commentForm" id="comment-Form" hidden>
