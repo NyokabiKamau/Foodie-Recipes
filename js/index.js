@@ -1,20 +1,16 @@
 
-const INGREDIENT = 'https://www.themealdb.com/api/json/v1/1/filter.php?i='
-
 const MEAL = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
 const RANDOM = 'https://www.themealdb.com/api/json/v1/1/random.php'
 
-const CATEGORY = 'https://www.themealdb.com/api/json/v1/1/categories.php'
-
 const SEARCH = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
+
+// LOADIND THE DOM
 document.addEventListener('DOMContentLoaded', () => {
     loadRandom()
-    // loadMenu()
 
-
-    // Login Form details and events
+    // LOGIN FORM DETAILS AND EVENTS
     const form_Container = document.getElementById('formContainer')
 
     const signupBtn = document.getElementById('signupBtn')
@@ -29,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         signinBtn.classList.remove('disable')
         signinBtn.addEventListener('click', () => {
             alert('Successfully Signed In')
-            searchMeal()
             loadMenu()
             form_Container.style.display = "none"
         })
@@ -42,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         signinBtn.classList.add('disable')
         signupBtn.addEventListener('click', () => {
             alert('Successfully Signed Up')
-            searchMeal()
             loadMenu()
             form_Container.style.display = "none"
         })
@@ -51,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Feedback Form details and events
+// FEEDBACK FORM DETAILS AND EVENTS
 const rateTitle = document.getElementById('rate-title')
 const rateComment = document.getElementById('comment-Form')
 
@@ -59,7 +53,6 @@ const rateComment = document.getElementById('comment-Form')
         event.preventDefault()
         rateComment.removeAttribute('hidden')
     })
-
 
 
 // ABOUT SECTION
@@ -71,6 +64,7 @@ aboutLink.addEventListener('click', () => {
     about.style.display = "block"
     mealCard.style.display = "none"
     searchRowCard.style.display = "none"
+    recipeCard.style.display = "none"
     })
 
 
@@ -79,13 +73,11 @@ const mealCard = document.getElementById('meal-cardBody')
 const recipeCard = document.getElementById('recipe-cardBody')
 
 
-
-// get search form data elements 
+// SEARCH FORM DETAILS AND EVENTS
 const searchRowCard = document.getElementById('search-result')
 const searchForm = document.getElementById('search-form')
 const searchInput = document.getElementById('search-input')
 
-// submit event for search form
 searchForm.addEventListener('submit', (event) => {
     event.preventDefault()
 
@@ -95,41 +87,45 @@ searchForm.addEventListener('submit', (event) => {
     searchRowCard.style.display = "block"
     searchRowCard.removeAttribute('hidden')
     about.style.display = "none"
+    recipeCard.style.display = "none"
 })
 
 
-// click event for home link
+// HOME LINK DETAILS AND EVENTS
 const homeLink = document.getElementById('home-link')
-homeLink.addEventListener('click', () => {
+homeLink.addEventListener('click', (event) => {
+    event.preventDefault()
+    searchRowCard.style.display = "none"
+    mealCard.style.display = "block"
+    about.style.display = "none"
+    recipeCard.style.display = "none"
+    loadRandom()
+})
+
+
+// RECIPE LINK DETAILS AND EVENTS
+const recipeLink = document.getElementById('recipe-link')
+recipeLink.addEventListener('click', (event) => {
+    event.preventDefault()
     searchRowCard.style.display = "none"
     mealCard.style.display = "block"
     about.style.display = "none"
     recipeCard.style.display = "block"
+    loadMenu()
     loadRandom()
 })
 
-// click event for Recipes link
-const recipeLink = document.getElementById('recipe-link')
-recipeLink.addEventListener('click', () => {
-    searchRowCard.style.display = "none"
-    mealCard.style.display = "none"
-    about.style.display = "none"
-    recipeCard.style.display = "block"
-    loadMenu()
-})
 
-
-
-// creating the meal element
+// CREATING MEAL CARD ELEMENTS
 function creatingMeal (image, id, category, title, instructions, link) {
     const rootDiv = document.createElement('div')
-    rootDiv.classList.add('card', 'col-12', 'px-0', 'mb-3')
+    rootDiv.classList.add('card', 'col-12', 'px-0', 'me-3')
 
     const rowDiv = document.createElement('div')
     rowDiv.classList.add('row')
 
     const cardDiv = document.createElement('div')
-    cardDiv.classList.add('col-5', 'card-body')
+    cardDiv.classList.add('col-6', 'card-body')
 
     const imageDiv = document.createElement('div')
     imageDiv.classList.add('col-6')
@@ -178,7 +174,7 @@ function creatingMeal (image, id, category, title, instructions, link) {
     mealLink.href = link
     mealLink.target = '_blank'
 
-    
+    // LIKE EVENT AND LIKE COUNT
     const count = document.createElement('p')
     count.setAttribute('id', 'countLike')
 
@@ -192,6 +188,8 @@ function creatingMeal (image, id, category, title, instructions, link) {
     })
 
 
+        // APPENDING ELEMENTS
+
     // append body elements to the card div
     cardDiv.appendChild(mealId)
     cardDiv.appendChild(mealCategory)
@@ -203,7 +201,6 @@ function creatingMeal (image, id, category, title, instructions, link) {
     cardDiv.appendChild(readBtn)
     cardDiv.appendChild(count)
     cardDiv.appendChild(likebutton)
-
 
     // append image element to image div
     imageDiv.appendChild(mealImage)
@@ -218,7 +215,8 @@ function creatingMeal (image, id, category, title, instructions, link) {
     return rootDiv
 }
 
-// function that loads meals
+
+// FUNCTION TO LOAD MEALS
 function loadMenu () {
     fetch(MEAL)
         .then((response) => response.json())
@@ -239,6 +237,8 @@ function loadMenu () {
         })
 }
 
+
+// FUNCTION TO LOAD RANDOM MEALS
 function loadRandom () {
     fetch(RANDOM)
         .then((response) => response.json())
@@ -260,7 +260,7 @@ function loadRandom () {
 }
 
 
-// search data
+// FUNCTION TO SEARCH MEALS
 function searchMeal (meal) {
     fetch(`${SEARCH}${meal}`)
         .then((response) => response.json())
